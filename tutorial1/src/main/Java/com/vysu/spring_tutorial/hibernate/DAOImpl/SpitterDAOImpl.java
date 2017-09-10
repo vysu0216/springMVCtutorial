@@ -1,5 +1,6 @@
-package com.vysu.spring_tutorial.hibernate.DAO;
+package com.vysu.spring_tutorial.hibernate.DAOImpl;
 
+import com.vysu.spring_tutorial.hibernate.DAO.SpitterDAO;
 import com.vysu.spring_tutorial.hibernate.entity.Spitter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

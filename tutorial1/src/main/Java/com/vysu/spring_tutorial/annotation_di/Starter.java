@@ -2,6 +2,7 @@ package com.vysu.spring_tutorial.annotation_di;
 
 import com.vysu.spring_tutorial.hibernate.DAO.SpitterDAO;
 import com.vysu.spring_tutorial.hibernate.entity.Spitter;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Date;
@@ -11,7 +12,6 @@ public class Starter {
     static private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
     static private SpringApplication application = (SpringApplication) context.getBean("springApplication");
     static private SpitterDAO spitterDAO = (SpitterDAO) context.getBean("spitterDAOImpl");
-
     private static Spitter spitterOperation() {
         Spitter spitter = new Spitter();
         spitter.setCreatedDate(new Date());

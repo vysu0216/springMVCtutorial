@@ -34,8 +34,8 @@
           class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
         <property name="url"
-                  value="jdbc:oracle:thin:@localhost:1521:vyzutest" />
-        <property name="username" value="vysudev" />
+                  value="jdbc:oracle:thin:@localhost:1521:vysuTst" />
+        <property name="username" value="slava" />
         <property name="password" value="12345" />
         <property name="initialSize" value="5" />
         <property name="maxActive" value="10" />
@@ -60,6 +60,15 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+
+<!--
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:db-changelog.xml" />
+        <property name="defaultSchema" value="" />
+        <property name="contexts" value="test, production" />
+    </bean>
+-->
 
 
 </beans>
