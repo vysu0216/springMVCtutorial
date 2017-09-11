@@ -21,6 +21,18 @@ public class Category implements Serializable {
     public Category() {
     }
 
+    @Id
+    @Column(name = "CATEGORY_ID",unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq_gen")
+    @SequenceGenerator(name="cat_seq_gen", sequenceName="PRODUCT_SEQUENCE", allocationSize=1)
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     @OneToMany(mappedBy = "parentCategory")
     @NotFound(action = NotFoundAction.IGNORE)
     public Set<Category> getSubCategories() {
@@ -42,18 +54,6 @@ public class Category implements Serializable {
 
     public Category(String name){
         this.name = name;
-    }
-
-    @Id
-    @Column(name = "CATEGORY_ID",unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq_gen")
-    @SequenceGenerator(name="cat_seq_gen", sequenceName="PRODUCT_SEQUENCE", allocationSize=1)
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
     }
 
     @ManyToOne( cascade = { CascadeType.ALL } )

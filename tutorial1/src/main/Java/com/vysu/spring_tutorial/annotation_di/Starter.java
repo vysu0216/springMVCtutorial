@@ -3,6 +3,7 @@ package com.vysu.spring_tutorial.annotation_di;
 import com.vysu.store.model.DAO.CategoryDAO;
 import com.vysu.store.model.DAO.ProductDAO;
 import com.vysu.store.model.entity.Category;
+import com.vysu.store.model.entity.Product;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
