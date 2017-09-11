@@ -1,0 +1,93 @@
+package com.vysu.store.model.entity;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(schema="vysu_store", name = "CATEGORY")
+public class Category implements Serializable {
+    private long categoryId;
+    private Category parentCategory;
+    private Boolean isTopLevel;
+    private String name;
+    private Set<Product> products = new HashSet<Product>();
+    private Set<Category> subCategories;
+
+    public Category() {
+    }
+
+    @OneToMany(mappedBy = "parentCategory")
+    @NotFound(action = NotFoundAction.IGNORE)
+    public Set<Category> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(Set<Category> subCategories) {
+        this.subCategories = subCategories;
+    }
+
+    @Column(name = "NAME",length = 5)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category(String name){
+        this.name = name;
+    }
+
+    @Id
+    @Column(name = "CATEGORY_ID",unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq_gen")
+    @SequenceGenerator(name="cat_seq_gen", sequenceName="PRODUCT_SEQUENCE", allocationSize=1)
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    @ManyToOne( cascade = { CascadeType.ALL } )
+    @JoinColumn(name = "PARENT_CATEGORY_ID")
+    @NotFound(action = NotFoundAction.IGNORE)
+    public Category getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(Category parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    @Column(name = "IS_TOP_LEVEL",length = 5)
+    public Boolean getIsTopLevel() {
+        return isTopLevel;
+    }
+
+    public void setIsTopLevel(Boolean isTopLevel) {
+        this.isTopLevel = isTopLevel;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public void addProductToCategory(Product product){
+        product.setCategory(this);
+        this.products.add(product);
+    }
+
+}

@@ -1,6 +1,9 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="Slava (generated)" id="1505059440210-1">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-1">
+        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="100000" minValue="1" ordered="false" sequenceName="PRODUCT_SEQUENCE" startValue="21"/>
+    </changeSet>
+    <changeSet author="vysu0216 (generated)" id="1505138856218-2">
         <createTable tableName="ADDRESS_UNIT">
             <column name="ADDRESS_UNIT_ID" type="NUMBER(7, 0)">
                 <constraints nullable="false"/>
@@ -17,7 +20,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-2">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-3">
         <createTable tableName="CART">
             <column name="CART_ID" type="NUMBER(11, 0)">
                 <constraints nullable="false"/>
@@ -37,18 +40,21 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-3">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-4">
         <createTable tableName="CATEGORY">
             <column name="CATEGORY_ID" type="NUMBER">
                 <constraints nullable="false"/>
             </column>
             <column name="PARENT_CATEGORY_ID" type="NUMBER"/>
-            <column name="IS_TOP_LEVEL" type="CHAR(1 BYTE)">
+            <column defaultValue="false" name="IS_TOP_LEVEL" type="CHAR(5 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(20 BYTE)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-4">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-5">
         <createTable tableName="COUNTRY">
             <column name="COUNTRY_CODE" type="VARCHAR2(5 BYTE)">
                 <constraints nullable="false"/>
@@ -58,7 +64,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-5">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-6">
         <createTable tableName="CUSTOMER">
             <column name="LOGIN" type="VARCHAR2(50 BYTE)">
                 <constraints nullable="false"/>
@@ -73,7 +79,7 @@
             <column name="SEX" type="VARCHAR2(6 BYTE)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-6">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-7">
         <createTable tableName="PRODUCT">
             <column name="PRODUCT_ID" type="NUMBER(11, 0)">
                 <constraints nullable="false"/>
@@ -84,7 +90,7 @@
             <column name="PRICE" type="NUMBER(18, 2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PRODUCT_QUANTITY" type="NUMBER">
+            <column defaultValueNumeric="0" name="PRODUCT_QUANTITY" type="NUMBER">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="CATEGORY_ID" type="NUMBER(11, 0)">
@@ -95,7 +101,7 @@
             <column name="DESCRIPTION" type="VARCHAR2(100 BYTE)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-7">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-8">
         <createTable tableName="PRODUCT_CART">
             <column name="PRODUCT_ID" type="NUMBER(11, 0)">
                 <constraints nullable="false"/>
@@ -108,44 +114,44 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-8">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-9">
         <createIndex indexName="ADDRESS_UNIT_PK" tableName="ADDRESS_UNIT" unique="true">
             <column name="ADDRESS_UNIT_ID"/>
         </createIndex>
         <addPrimaryKey columnNames="ADDRESS_UNIT_ID" constraintName="ADDRESS_UNIT_PK" forIndexName="ADDRESS_UNIT_PK" tableName="ADDRESS_UNIT"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-9">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-10">
         <createIndex indexName="CART_PK" tableName="CART" unique="true">
             <column name="CART_ID"/>
         </createIndex>
         <addPrimaryKey columnNames="CART_ID" constraintName="CART_PK" forIndexName="CART_PK" tableName="CART"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-10">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-11">
         <createIndex indexName="CATEGORY_PK" tableName="CATEGORY" unique="true">
             <column name="CATEGORY_ID"/>
         </createIndex>
         <addPrimaryKey columnNames="CATEGORY_ID" constraintName="CATEGORY_PK" forIndexName="CATEGORY_PK" tableName="CATEGORY"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-11">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-12">
         <createIndex indexName="COUNTRY_PK" tableName="COUNTRY" unique="true">
             <column name="COUNTRY_CODE"/>
         </createIndex>
         <addPrimaryKey columnNames="COUNTRY_CODE" constraintName="COUNTRY_PK" forIndexName="COUNTRY_PK" tableName="COUNTRY"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-12">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-13">
         <createIndex indexName="CUSTOMER_PK" tableName="CUSTOMER" unique="true">
             <column name="LOGIN"/>
         </createIndex>
         <addPrimaryKey columnNames="LOGIN" constraintName="CUSTOMER_PK" forIndexName="CUSTOMER_PK" tableName="CUSTOMER"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-13">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-14">
         <createIndex indexName="PRODUCT_CART_PK" tableName="PRODUCT_CART" unique="true">
             <column name="PRODUCT_ID"/>
             <column name="CART_ID"/>
         </createIndex>
         <addPrimaryKey columnNames="PRODUCT_ID, CART_ID" constraintName="PRODUCT_CART_PK" forIndexName="PRODUCT_CART_PK" tableName="PRODUCT_CART"/>
     </changeSet>
-    <changeSet author="Slava (generated)" id="1505059440210-14">
+    <changeSet author="vysu0216 (generated)" id="1505138856218-15">
         <createIndex indexName="PRODUCT_PK" tableName="PRODUCT" unique="true">
             <column name="PRODUCT_ID"/>
         </createIndex>

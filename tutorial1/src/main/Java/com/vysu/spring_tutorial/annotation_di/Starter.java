@@ -1,30 +1,56 @@
 package com.vysu.spring_tutorial.annotation_di;
 
-import com.vysu.spring_tutorial.hibernate.DAO.SpitterDAO;
-import com.vysu.spring_tutorial.hibernate.entity.Spitter;
-import liquibase.integration.spring.SpringLiquibase;
+import com.vysu.store.model.DAO.CategoryDAO;
+import com.vysu.store.model.DAO.ProductDAO;
+import com.vysu.store.model.entity.Category;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 public class Starter {
 
     static private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
-    static private SpringApplication application = (SpringApplication) context.getBean("springApplication");
-    static private SpitterDAO spitterDAO = (SpitterDAO) context.getBean("spitterDAOImpl");
-    private static Spitter spitterOperation() {
-        Spitter spitter = new Spitter();
-        spitter.setCreatedDate(new Date());
-        spitter.setPassword("12345");
-        spitter.setEmail("den4ik@mail.ru");
-        spitter.setUsername("Denis");
-        spitter.setFullname(spitter.getUsername() + " Cherkasov");
-        return spitter;
+    static private ProductDAO productDAO = (ProductDAO) context.getBean("productDAOImpl");
+    static private CategoryDAO categoryDAO = (CategoryDAO) context.getBean("categoryDAOImpl");
+
+    public static Category createCategory(String name,Boolean isTop,Category parent) {
+        Category category = new Category(name);
+        category.setIsTopLevel(isTop);
+        category.setParentCategory(parent);
+        categoryDAO.addCategory(category);
+        return category;
+    }
+
+    private static Product createProduct(String name, BigDecimal price){
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        return product;
     }
 
     public static void main(String[] args) {
-        application.outStringScope(4);
-        System.out.println("Test");
-        spitterDAO.addSpitter(spitterOperation());
+
+        Product iPhone = createProduct("iPhone", new BigDecimal("15.500"));
+        Product s8 = createProduct("Galaxy s8", new BigDecimal("10.500"));
+        Product tabletPc = createProduct("iPad", new BigDecimal("20.20"));
+
+
+
+        Category tablets;
+        Category phones;
+        Category apple = categoryDAO.getCategoryById(10);
+        Category samsung;
+
+        iPhone.setCategory(apple);
+        productDAO.addProduct(iPhone);
+
+/*
+        tablets=createCategory("Tablets",true,null);
+        phones = createCategory("Phones",true,null);
+        apple = createCategory("Apple",false,phones);
+        samsung = createCategory("Samsung",false,phones);
+*/
+
+
     }
 }

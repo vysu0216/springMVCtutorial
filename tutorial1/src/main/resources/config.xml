@@ -9,44 +9,33 @@
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-    <context:annotation-config />
+    <context:annotation-config/>
     <context:component-scan
-            base-package="com.vysu.spring_tutorial.hibernate.DAO" />
+            base-package="com.vysu.spring_tutorial.model.DAO, com.vysu.spring_tutorial.model.DAOImpl"/>
 
-    <tx:annotation-driven transaction-manager="txManager" />
-
-    <bean id="springApplication" class="com.vysu.spring_tutorial.annotation_di.SpringApplicationImpl"/>
-
-    <bean id="messageContainerService" class="com.vysu.spring_tutorial.annotation_di.MessageContainerService">
-        <property name="msgContainer">
-            <list>
-                <value>1 value</value>
-                <value>2 value</value>
-                <value>3 value</value>
-                <value>4 value</value>
-                <value>5 value</value>
-                <value>6 value</value>
-            </list>
-        </property>
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <bean id="txManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <bean id="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url"
-                  value="jdbc:oracle:thin:@localhost:1521:vysuTst" />
-        <property name="username" value="slava" />
-        <property name="password" value="12345" />
-        <property name="initialSize" value="5" />
-        <property name="maxActive" value="10" />
+                  value="jdbc:oracle:thin:@localhost:1521:vyzutest"/>
+        <property name="username" value="vysu_store"/>
+        <property name="password" value="mnogosalfetok"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxActive" value="10"/>
     </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mappingResources">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
             <list>
-                <value>Spitter.hbm.xml</value>
+                <value>com.vysu.spring_tutorial.model.entity</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -56,19 +45,13 @@
         </property>
     </bean>
 
-    <bean id="txManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
 <!--
     <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
-        <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="classpath:db-changelog.xml" />
-        <property name="defaultSchema" value="" />
-        <property name="contexts" value="test, production" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:db-changelog.xml"/>
+        <property name="defaultSchema" value=""/>
+        <property name="contexts" value="test, production"/>
     </bean>
 -->
-
 
 </beans>
