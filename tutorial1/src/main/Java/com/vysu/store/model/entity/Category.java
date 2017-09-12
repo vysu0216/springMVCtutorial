@@ -43,7 +43,7 @@ public class Category implements Serializable {
         this.subCategories = subCategories;
     }
 
-    @Column(name = "NAME",length = 5)
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
