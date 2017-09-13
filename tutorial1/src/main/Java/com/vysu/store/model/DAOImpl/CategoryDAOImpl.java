@@ -6,7 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
@@ -29,6 +30,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     public Category getCategoryById(long id) {
         return (Category) getCurrentSession().get(Category.class, id);
+    }
+
+    public List<Category> getAllCategories(){
+        return getCurrentSession().createQuery("from categories").list();
     }
 
     public Category getCategory(Category category) {
