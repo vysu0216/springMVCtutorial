@@ -33,7 +33,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     public List<Category> getAllCategories(){
-        return getCurrentSession().createQuery("from categories").list();
+        return getCurrentSession().createQuery("from Category").list();
     }
 
     public Category getCategory(Category category) {

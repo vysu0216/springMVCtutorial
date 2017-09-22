@@ -3,16 +3,11 @@
 <body>
 	<h2>Spring MVC and List Example</h2>
 
-<p>${categories}</p>
-	<c:if test="${not empty lists}">
-
-
+<p>"${categories}"</p>
 		<ul>
-			<c:forEach var="listValue" items="${lists}">
-				<li>${listValue}</li>
+			<c:forEach var="category" items="${categories}">
+				<li>${category}</li>
 			</c:forEach>
 		</ul>
-
-	</c:if>
 </body>
 </html>
