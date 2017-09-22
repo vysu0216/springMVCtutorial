@@ -29,8 +29,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         return categoryDAO.getAllCategories();
     }
 
+    @Transactional
     public Category getProductCategoryById(long id) {
-        return null;
+        return categoryDAO.getCategoryById(id);
     }
 
     public Category getProductCategoriesByName(String name) {

@@ -19,7 +19,9 @@ public class HomePageController {
 
     @RequestMapping({"/","/home"})
     public String showHomePage(Map<String, Object> model) {
-        model.put("categories", productCategoryService.getAllCategoriesAsList());
+        System.out.println(productCategoryService.getProductCategoryById(15));
+        model.put("categories", productCategoryService.getProductCategoryById(15));
+        //model = "true";
         return "home";
     }
 
