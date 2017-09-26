@@ -27,7 +27,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public String showHomePage(@RequestParam("cat_id") long categoryId, Map<String, Object> model) {
-        System.out.println(model.get("category_products"));
+        System.out.println(productCategoryService.getProductCategoryById(categoryId).getProducts());
        // model.put("category_products", productCategoryService.getProductCategoryById(categoryId).getProducts());
         return "category";
     }

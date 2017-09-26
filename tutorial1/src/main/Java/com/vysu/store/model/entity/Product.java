@@ -14,10 +14,10 @@ public class Product implements Serializable {
     long productId;
     String name;
     BigDecimal price;
-    int productQuantity;
+    Integer productQuantity;
     Category category;
-    float width;
-    float height;
+    Float width;
+    Float height;
     String description;
 
     @Id
@@ -69,21 +69,21 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    @Column(name = "WIDTH")
-    public float getWidth() {
+    @Column(nullable=true, name = "WIDTH")
+    public Float getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(Float width) {
         this.width = width;
     }
 
-    @Column(name = "HEIGHT")
-    public float getHeight() {
+    @Column(nullable=true, name = "HEIGHT")
+    public Float getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(Float height) {
         this.height = height;
     }
 

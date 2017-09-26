@@ -77,7 +77,7 @@ public class Category implements Serializable {
         this.isTopLevel = isTopLevel;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category", fetch=FetchType.EAGER)
     public Set<Product> getProducts() {
         return products;
     }
