@@ -4,15 +4,11 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 
-    <definition name="left_menus.definition" preparer="com.vysu.controller.ProductMenusController"
-        template="/WEB-INF/views/left_menus.jsp" />
-
-
     <definition name="base.template"
                 template="/WEB-INF/views/main_template.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
-        <put-attribute name="menu" value="left_menus.definition" />
+        <put-attribute name="menu" value="/WEB-INF/views/left_menus.jsp" />
         <put-attribute name="body" value="" />
 <!--
         <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
@@ -23,6 +19,10 @@
         <put-attribute name="title" value="Home page" />
         <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
     </definition>
+
+<!--
+    <definition name="menu" template="/WEB-INF/views/left_menus.jsp"/>
+-->
 
     <definition name="category" extends="base.template">
         <put-attribute name="title" value="Product Category" />

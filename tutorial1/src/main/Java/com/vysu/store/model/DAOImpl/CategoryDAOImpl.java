@@ -2,6 +2,7 @@ package com.vysu.store.model.DAOImpl;
 
 import com.vysu.store.model.DAO.CategoryDAO;
 import com.vysu.store.model.entity.Category;
+import com.vysu.store.model.entity.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

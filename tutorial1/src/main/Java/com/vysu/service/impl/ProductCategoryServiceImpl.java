@@ -3,6 +3,7 @@ package com.vysu.service.impl;
 import com.vysu.service.ProductCategoryService;
 import com.vysu.store.model.DAO.CategoryDAO;
 import com.vysu.store.model.entity.Category;
+import com.vysu.store.model.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -42,4 +43,5 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public Category getProductCategoriesByName(String name) {
         return null;
     }
+
 }

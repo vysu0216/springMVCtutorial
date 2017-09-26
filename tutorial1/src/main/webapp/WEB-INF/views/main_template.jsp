@@ -4,7 +4,6 @@
     <div class="page">
         <tiles:insertAttribute name="title" />
         <div class="content">
-        <tiles:getAsString value="headerMenu"/>
             <tiles:insertAttribute name="menu" />
             <tiles:insertAttribute name="body" />
         </div>
