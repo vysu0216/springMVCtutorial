@@ -29,7 +29,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         return categoryDAO.getAllCategories();
     }
 
-    @Transactional
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public List<Category> getRootCategoriesAsList() {
+        return categoryDAO.getRootCategories();
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Category getProductCategoryById(long id) {
         return categoryDAO.getCategoryById(id);
     }

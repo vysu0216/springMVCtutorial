@@ -6,6 +6,7 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Category implements Serializable {
     private Boolean isTopLevel;
     private String name;
     private Set<Product> products = new HashSet<Product>();
-    private Set<Category> subCategories;
+    private List<Category> subCategories;
 
     public Category() {
     }
@@ -33,13 +34,13 @@ public class Category implements Serializable {
         this.categoryId = categoryId;
     }
 
-    @OneToMany(mappedBy = "parentCategory")
+    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @NotFound(action = NotFoundAction.IGNORE)
-    public Set<Category> getSubCategories() {
+    public List<Category> getSubCategories() {
         return subCategories;
     }
 
-    public void setSubCategories(Set<Category> subCategories) {
+    public void setSubCategories(List<Category> subCategories) {
         this.subCategories = subCategories;
     }
 

@@ -13,4 +13,7 @@ public interface CategoryDAO {
     void saveCategory(Category category);
 
     List<Category> getAllCategories();
+
+    List<Category> getRootCategories();
+
 }

@@ -36,6 +36,10 @@ public class CategoryDAOImpl implements CategoryDAO {
         return getCurrentSession().createQuery("from Category").list();
     }
 
+    public List<Category> getRootCategories() {
+        return getCurrentSession().createQuery("from Category as cat where cat.isTopLevel = 1").list();
+    }
+
     public Category getCategory(Category category) {
         return (Category) getCurrentSession().get(Category.class,category);
     }

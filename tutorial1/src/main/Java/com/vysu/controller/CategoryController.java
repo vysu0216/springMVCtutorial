@@ -4,25 +4,25 @@ import com.vysu.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
 @Controller
-public class HomePageController {
+public class CategoryController {
 
     ProductCategoryService productCategoryService;
 
     @Autowired
-    public HomePageController(ProductCategoryService productCategoryService) {
+    public CategoryController(ProductCategoryService productCategoryService) {
         this.productCategoryService = productCategoryService;
     }
 
-    @RequestMapping({"/","/home"})
-    public String showHomePage(Map<String, Object> model) {
-        model.put("categories", productCategoryService.getRootCategoriesAsList());
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String showHomePage(@RequestParam("cat_id") long categoryId, Map<String, Object> model) {
 
-        return "home";
+        return "category";
     }
-
 
 }

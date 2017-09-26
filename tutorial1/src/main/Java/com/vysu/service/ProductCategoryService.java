@@ -14,4 +14,6 @@ public interface ProductCategoryService {
 
     List<Category> getAllCategoriesAsList();
 
+    List<Category> getRootCategoriesAsList();
+
 }
